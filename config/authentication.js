@@ -8,7 +8,7 @@ module.exports=(req,res,next)=>{
     const {authorization} = req.headers
     if(!authorization)
     {
-        res.redirect("http://localhost:3000/login");
+        res.redirect("https://ipugram.herokuapp.com/login");
         return res.status(401).json({err:"You must be logged in"});
     }
     const token = authorization.replace("Bearer ","")
