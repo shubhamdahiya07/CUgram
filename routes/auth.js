@@ -54,31 +54,34 @@ router.post('/signup',(req,res)=>{
 
 router.post('/login',(req,res)=>{
     const {email,password} = req.body;
-    if(!email || !password)
+    if(email && password)
     {
-        res.status(422).json({err:"empty entry"});
+        User.findOne({email}).then(user=>{
+            if(!user)
+            {
+                return res.status(422).json({error:"Invalid email or password"});
+            }
+            bcrypt.compare(password,user.password).then(matched=>{
+                if(matched)
+                {
+                    const token=jwt.sign({_id:user._id},secret_key);
+                    const {_id,name,email,followers,following,pic}=user;
+                    res.json({token,user:{_id,name,email,followers,following,pic}});
+                    //return res.json({message:"Signed In"});
+                }
+                else
+                    return res.status(422).json({err:"Invalid email or password"});
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+        })
+    }
+    else
+    {
+        res.status(422).json({error:"Enter email and password"});
         return;
     }
-    User.findOne({email}).then(user=>{
-        if(!user)
-        {
-            return res.status(422).json({err:"Invalid email or password"});
-        }
-        bcrypt.compare(password,user.password).then(matched=>{
-            if(matched)
-            {
-                const token=jwt.sign({_id:user._id},secret_key);
-                const {_id,name,email,followers,following,pic}=user;
-                res.json({token,user:{_id,name,email,followers,following,pic}});
-                //return res.json({message:"Signed In"});
-            }
-            else
-                return res.status(422).json({err:"Invalid email or password"});
-        })
-        .catch(err=>{
-            console.log(err);
-        })
-    })
 })
 
 router.post('/reset-password',(req,res)=>{

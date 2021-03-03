@@ -23,9 +23,9 @@ const Navbar=()=>{
             return(
                 <div>
                     <li><i data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>
-                    <li><Link to="/profile">Profile</Link></li>
+                    <li><Link to="/explore">Explore</Link></li>
                     <li><Link to="/create">Create Post</Link></li>
-                    <li><Link to="/home">Explore</Link></li>
+                    <li><Link to="/profile">Profile</Link></li>
                     <button className="btn red"
                         onClick={()=>{localStorage.clear()
                         window.location.replace('/login')}}>Logout

@@ -124,13 +124,12 @@ const deletePost = (postid)=>{
                             <img src={item.image}/>
                         </div>
                         <div className="card-content">
-                        <i className="material-icons" style={{color:"red"}}>favorite</i>
                         {
                             item.likes.includes(JSON.parse(localStorage.getItem("user"))._id)
                             ? 
-                             <i className="material-icons"
+                             <i className="material-icons" style={{color:"blue"}}
                                     onClick={()=>{unlikePost(item._id)}}
-                              >thumb_down</i>
+                              >thumb_up</i>
                             : 
                             <i className="material-icons"
                             onClick={()=>{likePost(item._id)}}

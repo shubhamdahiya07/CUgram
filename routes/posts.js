@@ -28,11 +28,9 @@ router.get('/home',isLoggedIn,(req,res)=>{
 
 router.post('/createpost',isLoggedIn,(req,res)=>{
     const {title,body,url}=req.body;
-    console.log(title,body,url);
-    if(!title||!body||!url)
-    {    console.log("lll");
-
-        return res.status(422).json("Add title and body");
+    if(!url)
+    {
+        return res.status(422).json("Add Image");
     }
     req.user.password=undefined;
     const post=new Post({
@@ -40,7 +38,6 @@ router.post('/createpost',isLoggedIn,(req,res)=>{
     });
     post.save().then(result=>{
         res.json({post:result});
-        console.log("KKK");
     })
     .catch(err=>{
         console.log(err);
@@ -74,7 +71,7 @@ router.put('/unlike',isLoggedIn,(req,res)=>{
         $pull:{likes:req.user._id}
     },{
         new:true
-    }).exec((err,result)=>{
+    }).populate("comments.postedBy","_id name").exec((err,result)=>{
         if(err){
             return res.status(422).json({error:err})
         }else{

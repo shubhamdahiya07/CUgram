@@ -37,24 +37,29 @@ const CreatePost=()=>{
     },[url]);
 
     const postDetails = ()=>{
-        const data = new FormData()
-        data.append("file",image)
-        data.append("upload_preset","IPUgram")
-        data.append("cloud_name","sheft")
-        fetch("https://api.cloudinary.com/v1_1/sheft/image/upload",{
-            method:"post",
-            body:data
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data.url);
-           setUrl(data.url)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
-
-        
+        if(image)
+        {
+            const data = new FormData()
+            data.append("file",image)
+            data.append("upload_preset","IPUgram")
+            data.append("cloud_name","sheft")
+            fetch("https://api.cloudinary.com/v1_1/sheft/image/upload",{
+                method:"post",
+                body:data
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data.url);
+               setUrl(data.url)
+            })
+            .catch(err=>{
+                console.log(err)
+            })        
+        }
+        else
+        {
+            M.toast({html: "Image not uploaded",classes:"#c62828 red darken-3"})
+        }
     }
 
     return(
