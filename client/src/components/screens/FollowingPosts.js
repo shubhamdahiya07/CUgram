@@ -1,5 +1,6 @@
 import react,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import M from 'materialize-css'
 
 const Home=()=>{
     const [data,setData]=useState([])
