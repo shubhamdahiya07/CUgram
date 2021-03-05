@@ -10,7 +10,13 @@ const Home=()=>{
             }
         }).then(res=>res.json())
         .then(result=>{
-            setData(result.posts)
+            if(result.error){
+                M.toast({html: data.error,classes:"#c62828 red darken-3"})
+             }
+             else
+             {
+                setData(result.posts)
+             }   
         })
      },[])
 

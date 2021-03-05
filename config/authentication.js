@@ -8,8 +8,7 @@ module.exports=(req,res,next)=>{
     const {authorization} = req.headers
     if(!authorization)
     {
-        res.redirect("https://ipugram.herokuapp.com/login");
-        return res.status(401).json({err:"You must be logged in"});
+        return res.status(401).json({error:"You must be logged in"});
     }
     const token = authorization.replace("Bearer ","")
     jwt.verify(token,secret_key,(err,payload)=>{
