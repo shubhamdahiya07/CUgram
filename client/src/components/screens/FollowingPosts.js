@@ -11,7 +11,8 @@ const Home=()=>{
         }).then(res=>res.json())
         .then(result=>{
             if(result.error){
-                M.toast({html: data.error,classes:"#c62828 red darken-3"})
+                M.toast({html: result.error,classes:"#c62828 red darken-3"})
+                window.location.replace('/login');
              }
              else
              {
