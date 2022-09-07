@@ -1,18 +1,19 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Server for IPUgram application",
+  "description": "Server for CUgram application",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
-    
+    "start": "node app.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author": "Himanshu Dahiya",
+  "author": "Shubham Dahiya",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "heroku": "^7.63.0",
     "jsonwebtoken": "^8.5.1",
     "materialize-css": "^1.0.0",
     "mongoose": "^5.11.17",

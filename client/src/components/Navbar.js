@@ -54,7 +54,7 @@ const Navbar=()=>{
     return(
     <nav>
         <div className="nav-wrapper white">
-        <Link to="/" className="brand-logo left">IPUgram</Link>
+        <Link to="/" className="brand-logo left">CUgram</Link>
         <ul id="nav-mobile" className="right">            
             {links()}
         </ul>

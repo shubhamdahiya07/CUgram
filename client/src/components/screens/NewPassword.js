@@ -32,7 +32,7 @@ const Login=()=>{
     return(
         <div className="mycard">
             <div className="card card-box">
-                <h2>IPUgram</h2>
+                <h2>CUgram</h2>
                 <input type="password" placeholder="Enter new password"
                 value={password} 
                 onChange={(e)=>setPassword(e.target.value)}></input>
