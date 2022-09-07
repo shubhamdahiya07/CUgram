@@ -134,5 +134,4 @@ router.post('/new-password',(req,res)=>{
         console.log(err)
     })
 })
-
 module.exports=router;
